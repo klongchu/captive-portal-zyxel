@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
 
-
-       
     <meta charset="UTF-8">
-       
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <title>โรงพยาบาลพุทธชินราช พิษณุโลก</title>
-       
+    <title>โรงพยาบาลพุทธชินราช พิษณุโลก</title>
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-96x96.png">
-       
-    <link href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" rel="stylesheet">
-        <style>
+    <style>
         /* thai */
         @font-face {
             font-family: 'Sarabun';
@@ -35,7 +27,6 @@
             text-align: center
         }
 
-
         body,
         html {
             font-family: 'Sarabun', sans-serif;
@@ -45,7 +36,6 @@
             height: 100%;
             display: table
         }
-
 
         #content {
             font-family: 'Sarabun', sans-serif;
@@ -58,12 +48,6 @@
             vertical-align: middle
         }
 
-
-        #content .login-card a {
-            color: blue;
-        }
-
-
         .login-card {
             font-family: 'Sarabun', sans-serif;
             padding: 40px;
@@ -75,24 +59,20 @@
             overflow: hidden
         }
 
-
         .login-card h1 {
             font-weight: 400;
             font-size: 2.3em;
             color: #1383c6
         }
 
-
         .login-card h1 span {
             color: #f26721
         }
-
 
         .login-card img {
             width: 70%;
             height: 70%
         }
-
 
         .login-card input[type=submit] {
             width: 100%;
@@ -100,7 +80,6 @@
             margin-bottom: 10px;
             position: relative
         }
-
 
         .login-card input[type=text],
         input[type=password] {
@@ -118,7 +97,6 @@
             -moz-box-sizing: border-box
         }
 
-
         .login-card input[type=text]:hover,
         input[type=password]:hover {
             font-family: 'Sarabun', sans-serif;
@@ -129,7 +107,6 @@
             box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1)
         }
 
-
         .login {
             font-size: 14px;
             font-family: Arial, sans-serif;
@@ -137,7 +114,6 @@
             height: 36px;
             padding: 0 8px
         }
-
 
         .login-submit {
             font-family: 'Sarabun', sans-serif;
@@ -150,18 +126,15 @@
             background-color: #4d90fe
         }
 
-
         .login-submit:disabled {
             opacity: .6
         }
-
 
         .login-submit:hover {
             border: 0;
             text-shadow: 0 1px rgba(0, 0, 0, .3);
             background-color: #357ae8
         }
-
 
         .login-card a {
             text-decoration: none;
@@ -172,29 +145,24 @@
             transition: opacity ease .5s
         }
 
-
         .login-card a:hover {
             opacity: 1
         }
-
 
         .login-help {
             width: 100%;
             font-size: 12px
         }
 
-
         .list {
             list-style-type: none;
             padding: 0
         }
 
-
         .list__item {
             margin: 0 0 .7rem;
             padding: 0
         }
-
 
         label {
             display: -webkit-box;
@@ -209,7 +177,6 @@
             font-size: 14px;
         }
 
-
         input[type=checkbox] {
             -webkit-box-flex: 0;
             -webkit-flex: none;
@@ -219,12 +186,10 @@
             float: left
         }
 
-
         @media screen and (max-width:450px) {
             .login-card {
                 width: 70% !important
             }
-
 
             .login-card img {
                 width: 30%;
@@ -234,95 +199,54 @@
     </style>
 </head>
 
-
 <body>
-        <div id="content">
-                <div class="login-card">
-                        <img src="captiveportal-logo_budhosp.png" /><br>
-                        <h2>สำหรับคนไข้และญาติ</h2>
-                        <form name="login_form" id="login-form" method="post" action="$PORTAL_ACTION$">
-                                <input type="text" name="auth_user" placeholder="เลขบัตรประชาชน" id="auth_user"
-                    pattern="[0-9]{13}" required>
-                                <input type="text" name="auth_pass" placeholder="เบอร์โทรศัพท์รับ SMS OTP"
-                    id="auth_pass" pattern="[0-9]{10}" required>
-                ﻿<input name="organization_id" type="hidden" value="5ef55c32ffed5d4094866f3e" />           
-                ﻿<input nam﻿e="site_id" type="hidden" value="5ef55c34ee0238a94d5d829d" />           
-                ﻿<input name="host_id" type="hidden" value="1" />           
-                ﻿<input name="host_by" type="hidden" value="AP" />           
-                <input id="redirect_url" name="redirect_url" type="hidden" value="" />﻿
-                                <div class="login-help">
-                                        <ul class="list">
-                                                <li class="list__item">
-                                                        <label class="label--checkbox">
-                                                                <input type="checkbox" class="checkbox"                
-                                                       
-                                    onchange="document.getElementById('login').disabled = !this.checked;">
-                                                                <!-- <span>ยินยอม <a target="_blank" rel="noopener"
-                                        href="http://www.termslicences.com/example.pdf">terms & licences</a></span> -->
-                                                                         <span>ยอมรับข้อตกลงและเงื่อนไขการใช้งาน WIFI <a
-                                        href=""                                                 data-fancybox="dialog"
-                                        data-src="#dialog-content">
-                                                                                        อ่านข้อตกลง
-                                                                                    </a>
-                                                                                 
-                                                                           
-                                                                            </span>
-                                                            </label>
-                                                    </li>
-                                            </ul>
-                                    </div>
-                               
-                                <div id="recaptcha-container"></div>
-                                <input name="zone" type="hidden" value="$PORTAL_ZONE$">
-                                <input name="redirurl" type="hidden" value="$PORTAL_REDIRURL$">
-                                <input name="accept" class="login login-submit" value="ลงทะเบียนใช้งาน WIFI" id="login"
-                    disabled>
-                           
+    <div id="content">
+        <div class="login-card">
+            <img src="logo.png" /><br>
+            <h2>อินเตอร์เน็ต สำหรับคนไข้และญาติ</h2>
+            <form name="login_form" id="login-form" method="post" action="$PORTAL_ACTION$">
+                <input type="text" name="auth_user" placeholder="เลขบัตรประชาชน" id="auth_user" pattern="[0-9]{13}"
+                    required>
+                <input type="text" name="auth_pass" placeholder="เบอร์โทรศัพท์รับ SMS OTP" id="auth_pass"
+                    pattern="[0-9]{10}" required>
+                <div id="recaptcha-container"></div>
+                <input name="zone" type="hidden" value="$PORTAL_ZONE$">
+                <input name="redirurl" type="hidden" value="$PORTAL_REDIRURL$">
+                <input name="accept" class="login login-submit" value="ลงทะเบียนใช้งาน WIFI" id="login" disabled>
             </form>
-                    </div>
-            </div>
-       
-        <div id="dialog-content" style="display:none;max-width:500px;">
-                <h2>เงื่อนไขและข้อตกลงในการใช้บริการ</h2>
-                <p>
-                        1.การเข้าใช้งานระบบคอมพิวเตอร์และการต่อเชื่อมทาง อินเทอร์เน็ต ของโรงพยาบาลพุทธชินราช พิษณุโลก
-                        จะต้องปฏิบัติตามขั้นตอนในการขออนุญาตเข้าใช้โดยจะมีการลงทะเบียนการเข้าใช้งาน ตามขั้นตอนของ
-            โรงพยาบาลพุทธชินราช
-                        พิษณุโลก
-                    </p>
-                <p>
-                       
-            2.ผู้เข้าใช้งานจะต้องทำความเข้าใจและลงนามเพื่อยืนยันว่าจะปฏิบัติตามนโยบายการใช้งานระบบคอมพิวเตอร์และการเชื่อมต่อกับ
-                        อินเทอร์เน็ต และจะต้องทำความเข้าใจในส่วนเปลี่ยนแปลงแก้ไข
-                    </p>
-                <p>
-                        3.หากพบว่าผู้ใช้งานมีการละเมิดนโยบายการใช้งานระบบคอมพิวเตอร์และการเชื่อมต่อกับอินเทอร์เน็ต
-            อาจจะถูกดำเนินคดีตามกฎหมาย
-                        หากการละเมิดนั้นผิดต่อกฎหมายของประเทศ
-                    </p>
-                <p>
-                        4.โรงพยาบาลพุทธชินราช พิษณุโลก ปฏิบัติตามพระราชบัญญัติคอมพิวเตอร์ พ.ศ. 2550 โดยเก็บ log files
-                        ของข้อมูลการจราจรทางคอมพิวเตอร์ เป็นเวลา 90 วัน นับตั้งแต่วันที่ข้อมูลนั้นเข้าสู่ระบบคอมพิวเตอร์
-                        ผู้ใช้บริการจะต้องไม่กระทำการใดๆ อันเป็นเหตุทำให้ผู้อื่นเกิดความเสียหาย
-            และ/หรือจะต้องไม่กระทำการใดๆ
-                        อันเป็นความผิดต่อพระราชบัญญัติว่าด้วยการกระทำผิดเกี่ยวกับคอมพิวเตอร์ พ.ศ.2550 และ/หรือ
-                        กฎหมายอื่นใดที่กำหนดความผิดเกี่ยวกับการใช้งานคอมพิวเตอร์และการใช้งานเครือข่ายอินเทอร์เน็ต
-            หากผู้ใช้บริการฝ่าฝืน
-                        ผู้ใช้บริการจะต้องรับผิดในความเสียหายที่เกิดขึ้นจากกรณีดังกล่าวแต่เพียงผู้เดียว
-                    </p>
-            </div>
-       
-    <script src="captiveportal-jquery-3.6.0.js"></script>
-       
-    <script src="captiveportal-sweetalert2@11.js"></script>
-       
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
-       
+        </div>
+    </div>
+    <script src="jquery-3.6.0.js"></script>
+    <script src="sweetalert2@11.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyC3czBaUg3DBUJRZjtHIbeKVlAHAdc20Qc",
+            authDomain: "budhosp-user-wifi.firebaseapp.com",
+            projectId: "budhosp-user-wifi",
+            storageBucket: "budhosp-user-wifi.appspot.com",
+            messagingSenderId: "845327738923",
+            appId: "1:845327738923:web:4440c3bf1bf736fe34226e",
+            measurementId: "G-N0X22V2LL9"
+        };
+        firebase.initializeApp(firebaseConfig);
+        window.onload = function () {
+            render();
+        };
+        function render() {
+            window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+                callback: (verifier) => {
+                    document.getElementById('login').disabled = false
+                },
+            });
+            recaptchaVerifier.render();
+        }
+    </script>
     <script>
         $(document).ready(function () {
+
             $("#login").on("click", async function (e) {
                 e.preventDefault();
-                //console.warn('auth_pass', $('#auth_pass').val())
                 Swal.fire({
                     title: 'ยืนยันการลงทะเบียนใช้งาน WIFI...',
                     text: 'ยืนยันการลงทะเบียนใช้งาน WIFI',
@@ -330,12 +254,8 @@
                     showCancelButton: true,
                     confirmButtonText: 'ตกลง',
                     showLoaderOnConfirm: true,
-                    // didOpen: () => {
-                    //  Swal.clickConfirm();
-                    // },
                     heightAuto: false,
                     preConfirm: async () => {
-                        //
                         $('.swal2-title').html(`กำลังส่งข้อมูลเพื่อยืนยันตัวตน...`);
                         return fetch('https://api-freeradius-user.budhosp.com/api/v1/wifi/register/otp', {
                             method: 'POST',
@@ -351,14 +271,14 @@
                                 'Content-Type': 'application/json'
                             }
                         }).then(response => {
-                            //console.warn('response ', response )
+                            console.warn('response ', response)
                             if (!response.ok) {
                                 return response.json().then(json => {
                                     throw new Error(json.message)
                                 })
                             }
                             return response.json()
-                        }).catch((error) => {
+                        }).catch(async (error) => {
                             $('.swal2-title').html(`ผิดพลาด`);
                             $('.swal2-html-container').html('ข้อมูลไม่ถูกต้อง กรณุาตรวจสอบข้อมูลให้ถูกต้อง');
                             $('.swal2-cancel').html('ปิด').attr('disabled', false);
@@ -370,75 +290,129 @@
                     },
                     allowOutsideClick: false,
                 }).then((res) => {
-                    //console.warn('res', res)
                     if (res.value.code == 0) {
-                        Swal.fire({
-                            title: 'รหัสผ่าน OTP จะถูกส่งไปที่เบอร์ : ' + $('#auth_pass').val() + ' ' + res.value.FullName,
-                            text: 'เบอร์โทรศัพท์จะผูกกับชื่อ - นามสกุล',
-                            icon: 'warning',
-                            input: 'text',
-                            inputLabel: 'กรุณาตรวจสอบข้อความบนมือถือของท่าน กรุณาใส่เลขรหัสผ่าน OTP 6 หลัก',
-                            inputPlaceholder: 'กรุณาใส่เลขรหัสผ่าน OTP 6 หลัก เช่น 888999',
-                            heightAuto: false,
-                            inputValidator: async (otp) => {
-                                if (!otp || otp.length != 6) {
-                                    return 'กรุณาใส่เลขรหัสผ่าน OTP 6 หลัก'
-                                } else {
-                                    return await fetch(res.value.signed_url, {
-                                        method: 'POST',
-                                        dataType: 'json',
-                                        body: JSON.stringify({
-                                            username: $('#auth_user').val(),
-                                            tel: $('#auth_pass').val(),
-                                            otp: otp,
-                                            token: res.value.token,
-                                        }),
-                                        processData: false,
-                                        contentType: false,
-                                        headers: {
-                                            'Accept': 'application/json',
-                                            'Content-Type': 'application/json'
-                                        }
-                                    }).then(response => {
-                                        if (!response.ok) {
-                                            return response.json().then(json => {
-                                                throw new Error(json.message)
+                        var number = '+66' + $('#auth_pass').val();
+                        firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function (confirmationResult) {
+                            window.confirmationResult = confirmationResult;
+                            coderesult = confirmationResult;
+                            Swal.fire({
+                                title: 'รหัสผ่าน OTP จะถูกส่งไปที่เบอร์ : ' + $('#auth_pass').val() + ' ' + res.value.FullName,
+                                text: 'เบอร์โทรศัพท์จะผูกกับชื่อ - นามสกุล',
+                                input: "text",
+                                inputLabel: 'กรุณาตรวจสอบข้อความบนมือถือของท่าน กรุณาใส่เลขรหัสผ่าน OTP 6 หลัก',
+                                inputPlaceholder: 'กรุณาใส่เลขรหัสผ่าน OTP 6 หลัก เช่น 888999',
+                                inputAttributes: {
+                                    autocapitalize: "off"
+                                },
+                                heightAuto: false,
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'ใช่, ยืนยัน!',
+                                cancelButtonText: 'ยกเลิก',
+                                preConfirm: async (otp) => {
+                                    if (!otp || otp.length != 6) {
+                                        Swal.showValidationMessage(`
+												กรุณาใส่เลขรหัสผ่าน OTP 6 หลัก
+											`);
+                                    } else {
+                                        await coderesult.confirm(otp).then(function (result) {
+                                            var user = result.user;
+                                            return user;
+                                        }).catch(function (error) {
+                                            console.error('user', error.message);
+                                            Swal.showValidationMessage(`
+												Request failed: ${error}
+											`);
+                                        });
+                                    }
+                                },
+                                allowOutsideClick: () => !Swal.isLoading()
+                            }).then((firebase_result) => {
+                                if (firebase_result.isConfirmed) {
+                                    console.log('firebase_result', firebase_result)
+                                    //$("#btn-login-form").submit();
+                                    Swal.fire({
+                                        title: 'กำลังส่งข้อมูลเพื่อยืนยันตัวตน',
+                                        text: 'กำลังส่งข้อมูลเพื่อยืนยันตัวตน',
+                                        showCancelButton: false,
+                                        confirmButtonText: "ใช่, ยืนยัน!",
+                                        showLoaderOnConfirm: true,
+                                        didOpen: () => {
+                                            Swal.clickConfirm();
+                                        },
+                                        preConfirm: async (login) => {
+                                            $('.swal2-title').html(`กำลังส่งข้อมูลเพื่อยืนยันตัวตน...`);
+                                            return fetch(res.value.signed_url, {
+                                                method: 'POST',
+                                                dataType: 'json',
+                                                body: JSON.stringify({
+                                                    username: $('#auth_user').val(),
+                                                    tel: $('#auth_pass').val(),
+                                                    token: res.value.token,
+                                                }),
+                                                processData: false,
+                                                contentType: false,
+                                                headers: {
+                                                    'Accept': 'application/json',
+                                                    'Content-Type': 'application/json'
+                                                }
+                                            }).then(response => {
+                                                //console.warn('response ', response )
+                                                if (!response.ok) {
+                                                    return response.json().then(json => {
+                                                        throw new Error(json.message)
+                                                    })
+                                                }
+                                                return response.json()
+                                            }).catch((error) => {
+                                                $('.swal2-title').html(`ผิดพลาด`);
+                                                $('.swal2-html-container').html('ข้อมูลไม่ถูกต้อง กรณุาตรวจสอบข้อมูลให้ถูกต้อง');
+                                                $('.swal2-cancel').html('ปิด').attr('disabled', false);
+                                                $('.swal2-confirm').html('ตกลง').prop('disabled', true).hide();
+                                                Swal.showValidationMessage(
+                                                    `${error}`
+                                                )
+                                            })
+                                        },
+                                        allowOutsideClick: () => !Swal.isLoading()
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            Swal.fire({
+                                                position: 'center',
+                                                icon: 'success',
+                                                title: 'ลงทะเบียนสำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 2000,
+                                                heightAuto: false,
+                                            }).then(() => {
+                                                $("#login-form").submit();
                                             })
                                         }
-                                    }).catch(error => {
-                                        //console.warn('error', error)
-                                        return error + ' : ' + res.value.FullName
                                     });
-                                }
-                            },
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'ใช่, ยืนยัน!',
-                            cancelButtonText: 'ยกเลิก'
-                        }).then(async (otp) => {
-                            if (otp.value) {
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'success',
-                                    title: 'ลงทะเบียนสำเร็จ',
-                                    showConfirmButton: false,
-                                    timer: 2000,
-                                    heightAuto: false,
-                                }).then(() => {
-                                    $("#login-form").submit();
-                                })
-                            }
 
-                        })
+                                }
+                            });
+                        }).catch(function (error) {
+                            console.error('coderesult', error.message);
+                        });
+
                     } else {
-                        $("#login-form").submit();
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'ลงทะเบียนสำเร็จ',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            heightAuto: false,
+                        }).then(() => {
+                            $("#login-form").submit();
+                        })
                     }
                 })
             });
         });
     </script>
 </body>
-
 
 </html>
