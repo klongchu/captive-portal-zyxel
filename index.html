@@ -273,9 +273,9 @@
             };
             // submit event
             nebula.submitEvent = function () {
-                document.getElementById('submit-btn').setAttribute('disabled', 'disabled');
+                document.getElementById('login').setAttribute('disabled', 'disabled');
                 window.setTimeout(function () {
-                    document.getElementById('submit-btn').removeAttribute('disabled');
+                    document.getElementById('login').removeAttribute('disabled');
                 }, 5000);
                 return true;
             };
@@ -393,6 +393,7 @@
         $(document).ready(function () {
 
             $("#login").on("click", async function (e) {
+                
                 e.preventDefault();
                 Swal.fire({
                     title: 'ยืนยันการลงทะเบียนใช้งาน WIFI...',
@@ -554,6 +555,7 @@
                             heightAuto: false,
                         }).then(() => {
                             $("#loginform").submit();
+                            NEBULA.submitEvent()
                         })
                     }
                 })
