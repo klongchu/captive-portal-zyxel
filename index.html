@@ -1101,12 +1101,12 @@
                     allowOutsideClick: false,
                 }).then((res) => {
                     if (res.value.code == 0) {
-                        var number = '+66' + $('#auth_pass').val();
+                        var number = '+66' + $('#password1').val();
                         firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function (confirmationResult) {
                             window.confirmationResult = confirmationResult;
                             coderesult = confirmationResult;
                             Swal.fire({
-                                title: 'รหัสผ่าน OTP จะถูกส่งไปที่เบอร์ : ' + $('#auth_pass').val() + ' ' + res.value.FullName,
+                                title: 'รหัสผ่าน OTP จะถูกส่งไปที่เบอร์ : ' + $('#password1').val() + ' ' + res.value.FullName,
                                 text: 'เบอร์โทรศัพท์จะผูกกับชื่อ - นามสกุล',
                                 input: "text",
                                 inputLabel: 'กรุณาตรวจสอบข้อความบนมือถือของท่าน กรุณาใส่เลขรหัสผ่าน OTP 6 หลัก',
@@ -1157,8 +1157,8 @@
                                                 method: 'POST',
                                                 dataType: 'json',
                                                 body: JSON.stringify({
-                                                    username: $('#auth_user').val(),
-                                                    tel: $('#auth_pass').val(),
+                                                    username: $('#username1').val(),
+                                                    tel: $('#password1').val(),
                                                     token: res.value.token,
                                                 }),
                                                 processData: false,
