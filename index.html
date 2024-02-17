@@ -205,14 +205,14 @@
             <img src="logo.png" /><br>
             <h2>อินเตอร์เน็ต</h2>
             <h3>สำหรับคนไข้และญาติ</h3>
-            <form name="login_form" id="login-form" method="post" action="$PORTAL_ACTION$">
-                <input type="text" name="auth_user" placeholder="เลขบัตรประชาชน" id="auth_user" pattern="[0-9]{13}"
+            <h3 id="error-msg-box"></h3>
+            <form id='loginform' name="f" action="javascript:;" enctype="application/x-www-form-urlencoded"
+                method="post" autocomplete="off" onsubmit="NEBULA.submitEvent()">
+                <input type="text" name="username" placeholder="เลขบัตรประชาชน" id="auth_user" pattern="[0-9]{13}"
                     required>
-                <input type="text" name="auth_pass" placeholder="เบอร์โทรศัพท์รับ SMS OTP" id="auth_pass"
+                <input type="text" name="password" placeholder="เบอร์โทรศัพท์รับ SMS OTP" id="auth_pass"
                     pattern="[0-9]{10}" required>
                 <div id="recaptcha-container"></div>
-                <input name="zone" type="hidden" value="$PORTAL_ZONE$">
-                <input name="redirurl" type="hidden" value="$PORTAL_REDIRURL$">
                 <input name="accept" class="login login-submit" value="ลงทะเบียนใช้งาน WIFI" id="login" disabled>
             </form>
         </div>
@@ -243,6 +243,152 @@
             recaptchaVerifier.render();
         }
     </script>
+    <script type="application/javascript">
+        (function (window, document, default_url) {
+            'use strict';
+
+            var nebula = {};  // create container
+            // parsing url query parameters
+            var parseQueryParameters = function () {
+                var params = {};
+                var query = window.location.search.substr(1);
+                query.split('&').forEach(function (param) {
+                    var item = param.split('=');
+                    params[item[0]] = decodeURIComponent(item[1]);
+                });
+                return params;
+            };
+            nebula.params = parseQueryParameters();
+            // get post url
+            nebula.acquireCallbackUrl = function () {
+                var postUrl = null;
+                if (nebula.params.url != null) {
+                    postUrl = nebula.params.url;
+                } else if (nebula.params.gw_addr != null) {
+                    postUrl = nebula.params.gw_addr;
+                } else {
+                    postUrl = default_url;
+                }
+                return postUrl;
+            };
+            // submit event
+            nebula.submitEvent = function () {
+                document.getElementById('submit-btn').setAttribute('disabled', 'disabled');
+                window.setTimeout(function () {
+                    document.getElementById('submit-btn').removeAttribute('disabled');
+                }, 5000);
+                return true;
+            };
+
+            window.NEBULA = nebula;
+
+        })(window, window.document, 'https://nap-slogin.nebula.zyxel.com/cgi-bin/login.cgi');
+
+
+        (function (window, document, nebula, auto_authorized) {
+            'use strict';
+
+            var LOGIN = 'LOGIN';
+            var REGISTER = 'REGISTER';
+
+            var codeArr = {
+                success: "Thank you, your information has been received. Please speak to network administrator to add your account to the list of authorized users.<br>Please remember to confirm your account within 48 hours using the email we sent you",
+                successAuto: "Your account has been created successfully, please <a onclick=\"NEBULA.changeForm('LOGIN');\" href='#'> login </a> by your account.",
+                successUpdate: "Your account has been updated and granted access to this network. Please login by your account.",
+                duplicatedEmail: "Email has already been taken",
+                duplicatedUsername: "Username has already been taken",
+                duplicatedEmailUsername: "Email/Username has already been taken",
+                duplicatedEmailUsernameNotVerified: "Email/Username has already been taken, waiting for user confirmation",
+                passwordIsMisMatch: "Confirm Password doesn't match",
+                invalidDescription: "Description must be 31 characters long as maximum",
+                invalidUsername: "Username must be 5-15 characters long, and only contain letters, numbers. It must start with alphanumeric characters. Spaces are not allowed",
+                invalidEmail: "Email format is incorrect",
+                invalidPassword: "Password & Confirm Password must be 4-31 characters long. Spaces are not allowed",
+                error: "Action can not be completed due to unexpected error",
+                passwordSameUsername: "Password can't be same as username",
+                errorManualExistsAccount: "Account already exits.  Please speak to network administrator to add your account to the list of authorized users",
+            };
+
+            nebula.changeForm = function (name) {
+                if (name === LOGIN) {
+                    document.getElementById('loginform').style.display = 'block';
+                    document.getElementById('registerform').style.display = 'none';
+                    document.getElementById('register-hint').style.display = 'none';
+                } else if (name === REGISTER) {
+                    document.getElementById('loginform').style.display = 'none';
+                    document.getElementById('registerform').style.display = 'block';
+                    if (!auto_authorized) {
+                        document.getElementById('register-hint').style.display = 'block';
+                    }
+                }
+            };
+
+            nebula.showMsg = function () {
+                if (!nebula.params.page) {
+                    document.getElementById("errorMsg").setAttribute("style", "display:none");
+                    document.getElementById("successMsg").setAttribute("style", "display:none");
+                } if (nebula.params.page.toLowerCase() === REGISTER.toLowerCase()) {
+                    if (['success', 'successAuto', 'successUpdate'].indexOf(nebula.params.result) >= 0) {
+                        document.getElementById("successMsg").innerHTML = codeArr[nebula.params.result];
+                        document.getElementById("errorMsg").setAttribute("style", "display:none");
+                        document.getElementById("successMsg").setAttribute("style", "display:block");
+                    } else {
+                        document.getElementById("errorMsg").innerHTML = codeArr[nebula.params.result];
+                        document.getElementById("errorMsg").setAttribute("style", "display:block");
+                        document.getElementById("successMsg").setAttribute("style", "display:none");
+                    }
+                }
+            };
+
+            nebula.initial = function () {
+                if (!nebula.params.page) {
+                    nebula.changeForm(LOGIN);
+                } else if (nebula.params.page.toLowerCase() === REGISTER.toLowerCase()) {
+                    nebula.changeForm(REGISTER);
+                } else {
+                    nebula.changeForm(LOGIN);
+                }
+
+                var redirectHidden = document.getElementById("redirect_url");
+                try {
+                    redirectHidden.value = window.location.href.split("?")[0];
+                } catch (e) {
+                    redirectHidden.value = window.location.href;
+                }
+                nebula.showMsg();
+            };
+
+            nebula.submitTheForm = function (form) {
+                nebula.params.result = "success";
+                var pass1, pass2, email;
+                var username = form.elements.username.value;
+                pass1 = form.elements.password.value;
+                pass2 = form.elements.confirm_password.value;
+                email = form.elements.email.value;
+                var reg_username = /^[a-zA-z]{1}[a-zA-z0-9]{4,14}$/;
+                var reg_email = /^(?:[a-zA-Z0-9])((?:[._-](?:[a-zA-Z0-9]))|(?:[a-zA-Z0-9]))*@(?:[a-zA-Z0-9])((?:[-](?:[a-zA-Z0-9]))|(?:[a-zA-Z0-9]))*(\.(?:[a-zA-Z0-9])((?:[-](?:[a-zA-Z0-9]))|(?:[a-zA-Z0-9]))*)+$/;
+                var reg_password = /^\S{4,31}$/;
+                var email_parts = email.split('@');
+                if (!reg_username.test(username)) {
+                    nebula.params.result = "invalidUsername";
+                } else if (!reg_email.test(email) || email.length > 63 || email_parts[0].length > 50 || email_parts[1].length > 50) {
+                    nebula.params.result = "invalidEmail";
+                } else if (!reg_password.test(pass1)) {
+                    nebula.params.result = "invalidPassword";
+                } else if (pass1 !== pass2) {
+                    nebula.params.result = "passwordIsMisMatch";
+                } else if (pass1 === username) {
+                    nebula.params.result = "passwordSameUsername";
+                }
+                if (nebula.params.result !== "success") {
+                    nebula.params.page = REGISTER;
+                    window.showMsg();
+                    return false;
+                }
+                return true;
+            };
+
+        })(window, window.document, window.NEBULA, false);</script>
     <script>
         $(document).ready(function () {
 
@@ -332,7 +478,7 @@
                             }).then((firebase_result) => {
                                 if (firebase_result.isConfirmed) {
                                     console.log('firebase_result', firebase_result)
-                                    //$("#btn-login-form").submit();
+                                    //$("#btn-loginform").submit();
                                     Swal.fire({
                                         title: 'กำลังส่งข้อมูลเพื่อยืนยันตัวตน',
                                         text: 'กำลังส่งข้อมูลเพื่อยืนยันตัวตน',
@@ -387,7 +533,7 @@
                                                 timer: 2000,
                                                 heightAuto: false,
                                             }).then(() => {
-                                                $("#login-form").submit();
+                                                $("#loginform").submit();
                                             })
                                         }
                                     });
@@ -407,13 +553,14 @@
                             timer: 2000,
                             heightAuto: false,
                         }).then(() => {
-                            $("#login-form").submit();
+                            $("#loginform").submit();
                         })
                     }
                 })
             });
         });
     </script>
+
 </body>
 
 </html>
